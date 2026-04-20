@@ -1,7 +1,5 @@
 'use client';
 
-import PDFDownloadButton from './pdf-download-button';
-
 export default function ProjectOverview() {
   return (
     <section id="overview" className="py-20 px-6 bg-background relative">
@@ -43,9 +41,6 @@ export default function ProjectOverview() {
               </div>
             </div>
 
-            <div className="pt-4">
-              <PDFDownloadButton />
-            </div>
           </div>
 
           <div className="rounded-lg overflow-hidden h-96">

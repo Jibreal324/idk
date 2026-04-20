@@ -44,7 +44,7 @@ export default function Innovation() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {innovations.map((item, idx) => (
-            <div key={idx} className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-lg p-6 border border-primary/50 hover:border-primary hover:shadow-lg hover:shadow-[#d4af37]/20 transition space-y-3">
+            <div key={idx} className="bg-card rounded-lg p-6 border border-primary/50 hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition space-y-3">
               <div className="text-3xl">{item.icon}</div>
               <h3 className="text-lg font-bold text-primary">{item.title}</h3>
               <p className="text-sm text-secondary leading-relaxed">{item.description}</p>
@@ -52,7 +52,7 @@ export default function Innovation() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-br from-[#1a1a1a] via-[#0a0a0a] to-[#1a1a1a] border border-primary/50 rounded-lg p-8 space-y-4 shadow-xl shadow-[#d4af37]/10">
+        <div className="mt-16 bg-card border border-primary/50 rounded-lg p-8 space-y-4 shadow-xl shadow-primary/10">
           <h3 className="text-2xl font-bold text-primary">Management Innovation Theories</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-3 border-l-4 border-primary pl-4">

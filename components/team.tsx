@@ -36,7 +36,7 @@ export default function Team() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {teamMembers.map((member, idx) => (
-            <div key={idx} className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-lg overflow-hidden border border-primary/50 hover:border-primary hover:shadow-lg hover:shadow-[#d4af37]/20 transition">
+            <div key={idx} className="bg-card rounded-lg overflow-hidden border border-primary/50 hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition">
               <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
                 <div className="text-center text-muted-foreground">
                   <p className="text-sm text-secondary">Add Member Photo</p>
@@ -51,7 +51,7 @@ export default function Team() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-br from-[#1a1a1a] via-[#0a0a0a] to-[#1a1a1a] border border-primary/50 rounded-lg p-8 shadow-xl shadow-[#d4af37]/10">
+        <div className="mt-16 bg-card border border-primary/50 rounded-lg p-8 shadow-xl shadow-primary/10">
           <h3 className="text-2xl font-bold text-primary mb-6">Assessment Information</h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-3 border-l-4 border-primary pl-4">

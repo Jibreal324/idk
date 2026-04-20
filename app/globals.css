@@ -1,42 +1,42 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark, .dark *));
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #d4af37;
-  --card: #1a1a1a;
-  --card-foreground: #d4af37;
-  --popover: #1a1a1a;
-  --popover-foreground: #ffffff;
-  --primary: #d4af37;
-  --primary-foreground: #0a0a0a;
-  --secondary: #ffffff;
-  --secondary-foreground: #0a0a0a;
-  --muted: #2a2a2a;
-  --muted-foreground: #888888;
-  --accent: #d4af37;
-  --accent-foreground: #0a0a0a;
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #d4af37;
-  --input: #2a2a2a;
-  --ring: #d4af37;
-  --chart-1: #d4af37;
-  --chart-2: #ffffff;
-  --chart-3: #888888;
-  --chart-4: #d4af37;
-  --chart-5: #ffffff;
+  --background: #fafaf9;
+  --foreground: #1c1917;
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --popover: #ffffff;
+  --popover-foreground: #1c1917;
+  --primary: #b8860b;
+  --primary-foreground: #ffffff;
+  --secondary: #44403c;
+  --secondary-foreground: #ffffff;
+  --muted: #e7e5e4;
+  --muted-foreground: #78716c;
+  --accent: #b8860b;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #dc2626;
+  --border: #d6d3d1;
+  --input: #e7e5e4;
+  --ring: #b8860b;
+  --chart-1: #b8860b;
+  --chart-2: #1c1917;
+  --chart-3: #78716c;
+  --chart-4: #b8860b;
+  --chart-5: #1c1917;
   --radius: 0.625rem;
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #d4af37;
-  --sidebar-primary: #d4af37;
-  --sidebar-primary-foreground: #0a0a0a;
-  --sidebar-accent: #ffffff;
-  --sidebar-accent-foreground: #0a0a0a;
-  --sidebar-border: #d4af37;
-  --sidebar-ring: #d4af37;
+  --sidebar: #fafaf9;
+  --sidebar-foreground: #1c1917;
+  --sidebar-primary: #b8860b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #44403c;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #d6d3d1;
+  --sidebar-ring: #b8860b;
 }
 
 .dark {
@@ -54,8 +54,8 @@
   --muted-foreground: #888888;
   --accent: #d4af37;
   --accent-foreground: #0a0a0a;
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --destructive: #7f1d1d;
+  --destructive-foreground: #ef4444;
   --border: #d4af37;
   --input: #2a2a2a;
   --ring: #d4af37;

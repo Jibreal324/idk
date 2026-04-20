@@ -57,7 +57,7 @@ export default function Elevations() {
           {elevations.map(elev => (
             <div 
               key={elev.id} 
-              className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:border-primary hover:shadow-xl hover:shadow-[#d4af37]/20 transition-all duration-300 group"
+              className="bg-card border border-primary/50 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:border-primary hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 group"
               onClick={() => openLightbox(elev.image, elev.name)}
             >
               <div className="relative overflow-hidden">

@@ -8,7 +8,7 @@ export default function PDFDownloadButton() {
   const handleDownloadPDF = async () => {
     setIsLoading(true);
     try {
-      // Dynamically import html2pdf.js and jspdf
+      // Dynamically import html2pdf.js
       const html2pdfModule = await import('html2pdf.js');
       const html2pdf = html2pdfModule.default;
       
@@ -21,33 +21,21 @@ export default function PDFDownloadButton() {
       // Get current theme for PDF background
       const isDark = document.documentElement.classList.contains('dark');
       const bgColor = isDark ? '#0a0a0a' : '#fafaf9';
-      const textColor = isDark ? '#ffffff' : '#1c1917';
 
       const opt = {
-        margin: [10, 10, 10, 10],
+        margin: [5, 5, 5, 5],
         filename: 'CMA4002-Architectural-Design.pdf',
-        image: { type: 'jpeg', quality: 0.95 },
+        image: { type: 'jpeg', quality: 0.90 },
         html2canvas: { 
-          scale: 1.5,
+          scale: 2,
           useCORS: true,
           allowTaint: true,
           backgroundColor: bgColor,
           logging: false,
           scrollX: 0,
-          scrollY: -window.scrollY,
-          width: element.scrollWidth,
-          onclone: (clonedDoc: Document) => {
-            const clonedElement = clonedDoc.querySelector('main');
-            if (clonedElement) {
-              // Remove lightbox/modal if open
-              const modals = clonedElement.querySelectorAll('[class*="fixed"]');
-              modals.forEach(el => el.remove());
-              
-              // Ensure proper styling
-              (clonedElement as HTMLElement).style.backgroundColor = bgColor;
-              (clonedElement as HTMLElement).style.color = textColor;
-            }
-          }
+          scrollY: 0,
+          windowWidth: element.scrollWidth,
+          windowHeight: element.scrollHeight
         },
         jsPDF: { 
           orientation: 'portrait', 
@@ -55,7 +43,7 @@ export default function PDFDownloadButton() {
           format: 'a4',
           compress: true 
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        pagebreak: { mode: 'avoid-all' }
       };
       
       // Generate and save PDF

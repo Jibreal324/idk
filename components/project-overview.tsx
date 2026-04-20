@@ -26,15 +26,15 @@ export default function ProjectOverview() {
               </div>
 
               <div className="grid grid-cols-3 gap-4 pt-4">
-                <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+                <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
                   <div className="text-2xl font-bold text-primary">3</div>
                   <p className="text-xs text-secondary mt-1">Bedrooms</p>
                 </div>
-                <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+                <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
                   <div className="text-2xl font-bold text-primary">4</div>
                   <p className="text-xs text-secondary mt-1">Design Volumes</p>
                 </div>
-                <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+                <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
                   <div className="text-2xl font-bold text-primary">2</div>
                   <p className="text-xs text-secondary mt-1">Levels</p>
                 </div>

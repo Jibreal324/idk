@@ -10,7 +10,7 @@ export default function FloorPlan() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg p-6 hover:border-primary transition">
+              <div className="bg-card border border-primary/50 rounded-lg p-6 hover:border-primary transition shadow-sm">
                 <h3 className="text-xl font-bold text-primary mb-3">Level 1 Overview</h3>
                 <ul className="text-secondary space-y-2 text-sm">
                   <li>• Master Suite with ensuite bathroom</li>
@@ -24,7 +24,7 @@ export default function FloorPlan() {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg p-6 hover:border-primary transition">
+              <div className="bg-card border border-primary/50 rounded-lg p-6 hover:border-primary transition shadow-sm">
                 <h3 className="text-xl font-bold text-primary mb-3">Additional Features</h3>
                 <ul className="text-secondary space-y-2 text-sm">
                   <li>• Bedroom 1: 4000mm x 3800mm</li>
@@ -38,7 +38,7 @@ export default function FloorPlan() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-lg overflow-hidden border border-primary/50 shadow-2xl shadow-[#d4af37]/10">
+          <div className="bg-card rounded-lg overflow-hidden border border-primary/50 shadow-2xl shadow-primary/10">
             <img 
               src="/floor-plan.jpg" 
               alt="Level 1 Floor Plan"
@@ -47,15 +47,15 @@ export default function FloorPlan() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+            <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
               <p className="text-sm text-secondary">Total Bedrooms</p>
               <p className="text-2xl font-bold text-primary mt-2">3-4</p>
             </div>
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+            <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
               <p className="text-sm text-secondary">Living Spaces</p>
               <p className="text-2xl font-bold text-primary mt-2">4</p>
             </div>
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition">
+            <div className="bg-card border border-primary/50 rounded-lg p-4 text-center hover:border-primary transition shadow-sm">
               <p className="text-sm text-secondary">Bathrooms</p>
               <p className="text-2xl font-bold text-primary mt-2">2+</p>
             </div>

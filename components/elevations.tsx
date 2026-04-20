@@ -3,7 +3,8 @@
 import { useState } from 'react'
 
 export default function Elevations() {
-  const [selectedElevation, setSelectedElevation] = useState('north')
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedName, setSelectedName] = useState<string>('')
 
   const elevations = [
     {
@@ -32,7 +33,15 @@ export default function Elevations() {
     }
   ]
 
-  const current = elevations.find(e => e.id === selectedElevation)
+  const openLightbox = (image: string, name: string) => {
+    setSelectedImage(image)
+    setSelectedName(name)
+  }
+
+  const closeLightbox = () => {
+    setSelectedImage(null)
+    setSelectedName('')
+  }
 
   return (
     <section id="elevations" className="py-20 px-6 bg-background">
@@ -40,54 +49,30 @@ export default function Elevations() {
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold text-primary mb-4">Architectural Elevations</h2>
           <p className="text-lg text-secondary">Detailed views showcasing the design volumes and material expression</p>
+          <p className="text-sm text-secondary/70 mt-2">Click on any image to enlarge</p>
         </div>
 
-        {/* Interactive selector - visible on screen */}
-        <div className="grid md:grid-cols-4 gap-4 mb-8 print:hidden">
+        {/* All elevations grid */}
+        <div className="pdf-elevations-grid grid grid-cols-1 md:grid-cols-2 gap-6">
           {elevations.map(elev => (
-            <button
-              key={elev.id}
-              onClick={() => setSelectedElevation(elev.id)}
-              className={`p-4 rounded-lg border-2 transition font-semibold ${
-                selectedElevation === elev.id
-                  ? 'border-primary bg-gradient-to-br from-[#d4af37]/20 to-[#f4d669]/10 text-primary shadow-lg shadow-[#d4af37]/20'
-                  : 'border-primary/30 text-secondary hover:border-primary/70 bg-[#1a1a1a]'
-              }`}
+            <div 
+              key={elev.id} 
+              className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:border-primary hover:shadow-xl hover:shadow-[#d4af37]/20 transition-all duration-300 group"
+              onClick={() => openLightbox(elev.image, elev.name)}
             >
-              {elev.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Selected elevation - visible on screen */}
-        {current && (
-          <div className="space-y-6 print:hidden">
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-2xl shadow-[#d4af37]/10">
-              <img 
-                src={current.image} 
-                alt={current.name}
-                className="w-full h-auto object-cover"
-                crossOrigin="anonymous"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-primary">{current.name}</h3>
-              <p className="text-secondary leading-relaxed">{current.description}</p>
-            </div>
-          </div>
-        )}
-
-        {/* All elevations grid - for PDF capture */}
-        <div className="pdf-elevations-grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {elevations.map(elev => (
-            <div key={elev.id} className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-lg">
-              <img 
-                src={elev.image} 
-                alt={elev.name}
-                className="w-full h-auto object-cover"
-                crossOrigin="anonymous"
-              />
+              <div className="relative overflow-hidden">
+                <img 
+                  src={elev.image} 
+                  alt={elev.name}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                  crossOrigin="anonymous"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <span className="text-white/0 group-hover:text-white/90 transition-colors duration-300 text-lg font-semibold">
+                    Click to Enlarge
+                  </span>
+                </div>
+              </div>
               <div className="p-4">
                 <h3 className="text-lg font-bold text-primary mb-2">{elev.name}</h3>
                 <p className="text-secondary text-sm leading-relaxed">{elev.description}</p>
@@ -96,6 +81,31 @@ export default function Elevations() {
           ))}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-pointer"
+          onClick={closeLightbox}
+        >
+          <div className="relative max-w-7xl w-full max-h-[90vh] flex flex-col items-center">
+            <button 
+              className="absolute top-4 right-4 z-10 text-white/80 hover:text-white text-4xl font-light transition-colors"
+              onClick={closeLightbox}
+            >
+              &times;
+            </button>
+            <h3 className="text-2xl font-bold text-primary mb-4">{selectedName}</h3>
+            <img 
+              src={selectedImage} 
+              alt={selectedName}
+              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <p className="text-secondary mt-4 text-center">Click anywhere outside to close</p>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

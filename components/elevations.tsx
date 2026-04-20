@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 
 export default function Elevations() {
   const [selectedElevation, setSelectedElevation] = useState('north')
@@ -43,7 +42,8 @@ export default function Elevations() {
           <p className="text-lg text-secondary">Detailed views showcasing the design volumes and material expression</p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-4 mb-8">
+        {/* Interactive selector - visible on screen */}
+        <div className="grid md:grid-cols-4 gap-4 mb-8 print:hidden">
           {elevations.map(elev => (
             <button
               key={elev.id}
@@ -59,13 +59,15 @@ export default function Elevations() {
           ))}
         </div>
 
+        {/* Selected elevation - visible on screen */}
         {current && (
-          <div className="space-y-6">
+          <div className="space-y-6 print:hidden">
             <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-2xl shadow-[#d4af37]/10">
               <img 
                 src={current.image} 
                 alt={current.name}
                 className="w-full h-auto object-cover"
+                crossOrigin="anonymous"
               />
             </div>
 
@@ -75,6 +77,24 @@ export default function Elevations() {
             </div>
           </div>
         )}
+
+        {/* All elevations grid - for PDF capture */}
+        <div className="pdf-elevations-grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          {elevations.map(elev => (
+            <div key={elev.id} className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-primary/50 rounded-lg overflow-hidden shadow-lg">
+              <img 
+                src={elev.image} 
+                alt={elev.name}
+                className="w-full h-auto object-cover"
+                crossOrigin="anonymous"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-primary mb-2">{elev.name}</h3>
+                <p className="text-secondary text-sm leading-relaxed">{elev.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import html2pdf from 'html2pdf.js';
 
 export default function PDFDownloadButton() {
   const [isLoading, setIsLoading] = useState(false);
@@ -9,6 +8,9 @@ export default function PDFDownloadButton() {
   const handleDownloadPDF = async () => {
     setIsLoading(true);
     try {
+      // Dynamically import html2pdf.js only on client-side when needed
+      const html2pdf = (await import('html2pdf.js')).default;
+      
       const element = document.documentElement;
       const opt = {
         margin: 10,

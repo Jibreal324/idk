@@ -8,7 +8,7 @@ export default function PDFDownloadButton() {
   const handleDownloadPDF = async () => {
     setIsLoading(true);
     try {
-      // Dynamically import html2pdf.js
+      // Dynamically import html2pdf.js and html2canvas
       const html2pdfModule = await import('html2pdf.js');
       const html2pdf = html2pdfModule.default;
       
@@ -22,6 +22,33 @@ export default function PDFDownloadButton() {
       const isDark = document.documentElement.classList.contains('dark');
       const bgColor = isDark ? '#0a0a0a' : '#fafaf9';
 
+      // Clone the element to avoid modifying the original
+      const clone = element.cloneNode(true) as HTMLElement;
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      clone.style.top = '0';
+      clone.style.width = element.scrollWidth + 'px';
+      clone.style.backgroundColor = bgColor;
+      document.body.appendChild(clone);
+
+      // Convert all computed colors to rgb format to avoid oklab/oklch issues
+      const allElements = clone.querySelectorAll('*');
+      allElements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const computed = window.getComputedStyle(htmlEl);
+        
+        // Get computed colors and apply as inline styles
+        const color = computed.color;
+        const backgroundColor = computed.backgroundColor;
+        const borderColor = computed.borderColor;
+        
+        if (color) htmlEl.style.color = color;
+        if (backgroundColor && backgroundColor !== 'rgba(0, 0, 0, 0)') {
+          htmlEl.style.backgroundColor = backgroundColor;
+        }
+        if (borderColor) htmlEl.style.borderColor = borderColor;
+      });
+
       const opt = {
         margin: [5, 5, 5, 5],
         filename: 'CMA4002-Architectural-Design.pdf',
@@ -32,10 +59,7 @@ export default function PDFDownloadButton() {
           allowTaint: true,
           backgroundColor: bgColor,
           logging: false,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: element.scrollWidth,
-          windowHeight: element.scrollHeight
+          foreignObjectRendering: false,
         },
         jsPDF: { 
           orientation: 'portrait', 
@@ -47,7 +71,10 @@ export default function PDFDownloadButton() {
       };
       
       // Generate and save PDF
-      await html2pdf().set(opt).from(element).save();
+      await html2pdf().set(opt).from(clone).save();
+      
+      // Clean up clone
+      document.body.removeChild(clone);
       
     } catch (error) {
       console.error('[v0] PDF download failed:', error);
